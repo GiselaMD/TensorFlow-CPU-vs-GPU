@@ -7,19 +7,18 @@ import tensorflow as tf
 import os
 
 os.environ["CUDA_DEVICE_ORDER"]="PCI_BUS_ID" 
-os.environ["CUDA_VISIBLE_DEVICES"]="-1"
 
 LOGDIR = '/tmp/matmul/'
 N = 10
 config = tf.ConfigProto(allow_soft_placement = True, log_device_placement = True) 
 
-with tf.device('/cpu:0'):
+with tf.device('/cpu:0'): # CHANGE DEVICE HERE
     A = tf.Variable(tf.random_normal((N*1024,N*1024)), name="A")
     B = tf.Variable(tf.random_normal((N*1024,N*1024)), name="B")
     C = tf.matmul(A, B)
-    tf.summary.histogram("matriz", A)   #tensorboard
-    tf.summary.histogram("matriz", B)   #tensorboard
-    tf.summary.histogram("matriz", C)   #tensorboard
+    tf.summary.histogram("matriz", A)   #( if you want to see the tensors with tensorboard, 
+    tf.summary.histogram("matriz", B)   #run: tensorboard --logdir /"yourlogpath"
+    tf.summary.histogram("matriz", C)   
 
 
 with tf.Session(config=config) as s:
