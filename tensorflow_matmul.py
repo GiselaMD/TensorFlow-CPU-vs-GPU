@@ -16,8 +16,8 @@ with tf.device('/cpu:0'): # CHANGE DEVICE HERE
     A = tf.Variable(tf.random_normal((N*1024,N*1024)), name="A")
     B = tf.Variable(tf.random_normal((N*1024,N*1024)), name="B")
     C = tf.matmul(A, B)
-    tf.summary.histogram("matriz", A)   #( if you want to see the tensors with tensorboard, 
-    tf.summary.histogram("matriz", B)   #run: tensorboard --logdir /"yourlogpath"
+    tf.summary.histogram("matriz", A)   #if you want to see the tensors with tensorboard, 
+    tf.summary.histogram("matriz", B)   #run: tensorboard --logdir /"LOGDIR path"
     tf.summary.histogram("matriz", C)   
 
 
